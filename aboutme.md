@@ -1,16 +1,17 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Quick intro
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Call me, RP.:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+- I curious to learn about your requirements. 
+- I own and deliver the solution.
 
 What else do you need?
 
 ### My story
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+I would like to see myself as an engineer. I am curious about solution design and archiecture. I am intrigued by how human psycology attributes to the outcomes.
+Feel free to reach me at **raghavendra.prakahs@gmail.com** . I shall answer **all** your queries :).
