@@ -23,6 +23,7 @@ navbar-links:
   About Me: "aboutme"
   Resources:
     - Generative AI Resources: "https://github.com/raghavendraprakash/KnowledgeBase"
+    - LLM Observability with Langfuse: "https://github.com/raghavendraprakash/KnowledgeBase/blob/main/Langfuse%20at%20a%20Glance/LangfuseataGlance.html"
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
 
