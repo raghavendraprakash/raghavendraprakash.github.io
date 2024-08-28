@@ -11,5 +11,5 @@ Call me, RP.
 
 ### My story
 
-I am a computer science engineer by qualification, software developer/designer/architect by profession. I am curious about solution design and archiecture. I am intrigued by how human psycology attributes to the outcomes. Currently, exploring the possibility of powering the applications with generative AI capability.
+I am a computer science engineer by qualification, and a software developer/designer/architect by profession. I am curious about solution design and archiecture. I am intrigued by how human psycology attributes to the outcomes. Currently, exploring the possibility of powering the applications with generative AI capability.
 Feel free to reach me at **raghavendra.prakahs@gmail.com** . I shall answer **all** your queries :).
