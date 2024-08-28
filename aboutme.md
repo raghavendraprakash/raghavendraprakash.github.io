@@ -6,7 +6,8 @@ specialty: Application engineering | AI/LLM Engineering | Data engineering | AI 
 ---
 
 Call me, RP.
-- I curious to learn about your requirements. Will do my best to assit you.
+- I curious to learn about your requirements. How can I be any help to you?
+  Do feel free to engage me in conversations. Eager to bring my experience and expertise to assist you.
 
 ### My story
 
