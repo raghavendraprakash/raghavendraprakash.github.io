@@ -22,6 +22,7 @@ author: RP
 navbar-links:
   About Me: "aboutme"
   Resources:
+    - Point of View: "https://raghavendraprakash.github.io/2020-02-28-sample-markdown/"
     - Generative AI Resources: "https://github.com/raghavendraprakash/KnowledgeBase"
     - LLM Observability with Langfuse: "https://docs.google.com/document/d/1JVCAoWe_GbK5ruSz6prrIV1BW4ovb0vuISGxHxA9ANA/edit#heading=h.9xdjkq1rl0os"
     - Beautiful Jekyll: "https://beautifuljekyll.com"
