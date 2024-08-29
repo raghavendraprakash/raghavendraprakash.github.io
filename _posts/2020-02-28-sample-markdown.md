@@ -1,17 +1,20 @@
 ---
 layout: post
-title: Sample blog post to learn markdown tips
-subtitle: There's lots to learn!
-gh-repo: daattali/beautiful-jekyll
-gh-badge: [star, fork, follow]
-tags: [test]
-comments: true
+title: My Point of View
+subtitle: Feel free to reach me out, happy to learn from you.
+gh-repo: raghavendraprakash
+tags: [trend,thought]
+comments: false
 mathjax: true
-author: Bill Smith
+author: RP
 ---
 
 {: .box-success}
-This is a demo post to show you how to write blog posts with markdown.  I strongly encourage you to [take 5 minutes to learn how to write in markdown](https://markdowntutorial.com/) - it'll teach you how to transform regular text into bold/italics/tables/etc.<br/>I also encourage you to look at the [code that created this post](https://raw.githubusercontent.com/daattali/beautiful-jekyll/master/_posts/2020-02-28-sample-markdown.md) to learn some more advanced tips about using markdown in Beautiful Jekyll.
+Microsoft has an exclusive partnership with OpenAI, Google has Gemini. Anthropic Claude is a strong contender for OpenAI's GPT models. And there is LlaMA from Meta. While Amazon has partnership with Anthropic, their models are available on other cloud service provider as well. With so much happening around Generative AI, does having no serious home grown LLM from Amazon hurt the cloud giant in a long run?
+
+A company may strategise its position in a highly competetive and evolving Generative AI market as a connector with multiple model choices. I tend to think the other way. Shouldn't a company back or partner strongly and exclusively for it's own brand and establish it as a defacto service?
+
+Hmm... Generative AI is a double edged sword, can cut in both the ways!
 
 **Here is some bold text**
 
