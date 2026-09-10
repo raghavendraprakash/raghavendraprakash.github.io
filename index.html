@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raghavendra Prakash — Solutions Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13212C;
+    --blueprint-deep:#163752;
+    --blueprint-mid:#23516F;
+    --blueprint-line:#8FBBD4;
+    --paper:#EEF1EE;
+    --paper-2:#E2E8E2;
+    --brass:#C89A3D;
+    --slate:#54707E;
+    --rule: rgba(19,33,44,0.14);
+    --maxw: 880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--brass); color:var(--ink); }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding-left:32px;
+    padding-right:32px;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      linear-gradient(var(--blueprint-deep), var(--blueprint-deep)) padding-box,
+      repeating-linear-gradient(0deg, rgba(143,187,212,0.08) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, rgba(143,187,212,0.08) 0 1px, transparent 1px 40px);
+    color:#F2F6F8;
+    padding:56px 0 44px;
+    overflow:hidden;
+  }
+
+  .reg-mark{
+    position:absolute;
+    width:22px; height:22px;
+    opacity:0.55;
+  }
+  .reg-mark::before, .reg-mark::after{
+    content:"";
+    position:absolute;
+    background:var(--blueprint-line);
+  }
+  .reg-mark::before{ width:100%; height:1px; top:50%; left:0; }
+  .reg-mark::after{ height:100%; width:1px; left:50%; top:0; }
+  .reg-mark.tl{ top:18px; left:18px; }
+  .reg-mark.tr{ top:18px; right:18px; }
+  .reg-mark.bl{ bottom:18px; left:18px; }
+  .reg-mark.br{ bottom:18px; right:18px; }
+
+  .hero .wrap{ position:relative; }
+
+  .drawing-no{
+    font-size:12px;
+    color:var(--blueprint-line);
+    margin-bottom:28px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .drawing-no span b{
+    color:#F2F6F8;
+    font-weight:500;
+  }
+
+  .hero h1{
+    font-size:clamp(30px, 5vw, 46px);
+    font-weight:600;
+    line-height:1.12;
+    max-width:11ch;
+  }
+
+  .hero .role{
+    margin-top:14px;
+    font-size:clamp(15px,2.1vw,18px);
+    color:var(--blueprint-line);
+    max-width:44ch;
+    font-weight:400;
+  }
+
+  .hero .lede{
+    margin-top:26px;
+    max-width:62ch;
+    font-size:15.5px;
+    color:#D6E4EC;
+    border-left:2px solid var(--brass);
+    padding-left:18px;
+  }
+
+  .title-block{
+    margin-top:40px;
+    border-top:1px solid rgba(143,187,212,0.35);
+    padding-top:16px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .tb-field{ font-size:11.5px; }
+  .tb-field .k{
+    color:var(--blueprint-line);
+    display:block;
+    margin-bottom:4px;
+  }
+  .tb-field .v{
+    color:#F2F6F8;
+    font-size:13px;
+  }
+
+  /* ---------- STAT STRIP ---------- */
+  .stats{
+    background:var(--blueprint-mid);
+    border-top:1px solid rgba(143,187,212,0.3);
+    border-bottom:1px solid rgba(0,0,0,0.15);
+  }
+  .stats .wrap{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    padding:0;
+  }
+  .stat{
+    padding:22px 18px;
+    border-left:1px solid rgba(143,187,212,0.25);
+    color:#EFF5F8;
+  }
+  .stat:first-child{ border-left:none; padding-left:0; }
+  .stat .n{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(20px,3vw,27px);
+    font-weight:600;
+    color:#fff;
+  }
+  .stat .l{
+    margin-top:4px;
+    font-size:11.5px;
+    color:var(--blueprint-line);
+    line-height:1.4;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:60px 0; }
+  section.alt{ background:var(--paper-2); }
+  section.dark{
+    background:var(--blueprint-deep);
+    color:#F2F6F8;
+  }
+
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    border:1px solid var(--brass);
+    border-radius:2px;
+    padding:2px 7px;
+    flex-shrink:0;
+  }
+  section.dark .sec-num{ color:#E9CD8C; border-color:#E9CD8C; }
+  .sec-head h2{
+    font-size:22px;
+    font-weight:600;
+  }
+
+  .summary p{
+    max-width:66ch;
+    font-size:16.5px;
+    color:var(--ink);
+  }
+
+  /* Experience */
+  .role-block{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:32px;
+  }
+  .role-meta{
+    border-left:2px solid var(--brass);
+    padding-left:18px;
+  }
+  .role-meta .org{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:18px;
+  }
+  .role-meta .fn{
+    margin-top:6px;
+    font-size:13.5px;
+    color:var(--slate);
+    line-height:1.5;
+  }
+  .role-list{
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .role-list li{
+    position:relative;
+    padding:14px 0;
+    padding-left:26px;
+    border-top:1px solid var(--rule);
+    font-size:15.5px;
+  }
+  .role-list li:first-child{ border-top:none; padding-top:0; }
+  .role-list li::before{
+    content:"";
+    position:absolute;
+    left:2px; top:22px;
+    width:9px; height:1px;
+    background:var(--brass);
+  }
+  .role-list li b{ font-weight:600; }
+
+  /* Accomplishments grid */
+  .accom-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  .accom{
+    background:var(--paper);
+    padding:20px 22px;
+    font-size:14.8px;
+  }
+  .accom .tag{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--slate);
+    margin-bottom:8px;
+  }
+
+  /* Core expertise — ledger style */
+  .expertise-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:40px;
+  }
+  .expertise-list li{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    padding:13px 0;
+    border-top:1px solid rgba(143,187,212,0.22);
+    font-size:15px;
+  }
+  .expertise-list li:nth-child(-n+2){ border-top:1px solid rgba(143,187,212,0.4); }
+  .expertise-list .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--brass);
+    flex-shrink:0;
+  }
+
+  /* Certifications ledger */
+  .cert-ledger{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .cert-ledger tr{ border-top:1px solid var(--rule); }
+  .cert-ledger tr:first-child{ border-top:none; }
+  .cert-ledger td{
+    padding:14px 0;
+    font-size:15px;
+    vertical-align:baseline;
+  }
+  .cert-ledger td.code{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--slate);
+    width:80px;
+    white-space:nowrap;
+  }
+
+  /* Education */
+  .edu-item{
+    padding:18px 0;
+    border-top:1px solid var(--rule);
+  }
+  .edu-item:first-child{ border-top:none; }
+  .edu-item .deg{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:16.5px;
+  }
+  .edu-item .inst{
+    margin-top:3px;
+    font-size:14px;
+    color:var(--slate);
+  }
+
+  footer{
+    background:var(--blueprint-deep);
+    color:var(--blueprint-line);
+    padding:30px 0;
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  @media (max-width:720px){
+    .wrap{ padding-left:22px; padding-right:22px; }
+    .title-block{ grid-template-columns:1fr 1fr; }
+    .stats .wrap{ grid-template-columns:1fr 1fr; }
+    .stat{ border-left:none; border-top:1px solid rgba(143,187,212,0.25); padding-left:0; }
+    .stat:nth-child(odd){ padding-right:18px; }
+    .stat:nth-child(-n+2){ border-top:none; }
+    .role-block{ grid-template-columns:1fr; }
+    .accom-grid{ grid-template-columns:1fr; }
+    .expertise-list{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="reg-mark tl"></span><span class="reg-mark tr"></span>
+  <span class="reg-mark bl"></span><span class="reg-mark br"></span>
+  <div class="wrap">
+    <div class="drawing-no">
+      <span>SHEET <b>01/01</b></span>
+      <span>SCOPE <b>ENTERPRISE CLOUD &amp; AI</b></span>
+      <span>REV <b>2026</b></span>
+    </div>
+    <h1>Raghavendra Prakash</h1>
+    <p class="role">Solutions Architecture — Product Engineering, Consulting, Cloud Adoption &amp; Generative AI, across Application, Data, and AI Engineering</p>
+    <p class="lede">Guiding enterprise and ISV customers through cloud transformation and Generative AI adoption — from technical scoping of multi-hundred-million-dollar strategic partnerships to hands-on architecture reviews that materially improve customer outcomes.</p>
+
+    <div class="title-block">
+      <div class="tb-field"><span class="k">NAME</span><span class="v">Raghavendra Prakash</span></div>
+      <div class="tb-field"><span class="k">DISCIPLINE</span><span class="v">Solutions Architecture</span></div>
+      <div class="tb-field"><span class="k">RECENT ENGAGEMENT</span><span class="v">AWS</span></div>
+      <div class="tb-field"><span class="k">CERTIFICATIONS</span><span class="v">6 held</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat">
+      <div class="n">$XXXM</div>
+      <div class="l">Strategic Collaborative Agreement, 5-year scope</div>
+    </div>
+    <div class="stat">
+      <div class="n">40%</div>
+      <div class="l">Increase in Amazon Bedrock adoption driven</div>
+    </div>
+    <div class="stat">
+      <div class="n">300+</div>
+      <div class="l">Participants across hackathons led</div>
+    </div>
+    <div class="stat">
+      <div class="n">10+</div>
+      <div class="l">Speaking sessions at Summits &amp; conclaves</div>
+    </div>
+  </div>
+</div>
+
+<section class="summary" id="summary">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§1</span>
+      <h2>Professional Summary</h2>
+    </div>
+    <p>A seasoned technology professional with a proven track record spanning Product Engineering, Consulting, Solutions Architecture, and Cloud Adoption across Application, Data, and AI Engineering. Deep expertise in guiding enterprise and ISV customers through cloud transformation and Generative AI adoption — from technical scoping of multi-hundred-million-dollar strategic partnerships to hands-on architecture reviews that materially improve customer outcomes.</p>
+    <p>Recognized for combining strategic customer engagement with technical depth, translating emerging AI capabilities into production-grade, AI-first architectures.</p>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§2</span>
+      <h2>Professional Experience</h2>
+    </div>
+    <div class="role-block">
+      <div class="role-meta">
+        <div class="org">AWS</div>
+        <div class="fn">Solutions Architecture &amp; Technical Engagement Leadership</div>
+      </div>
+      <ul class="role-list">
+        <li>Led technical scoping for an <b>industry-first Strategic Collaborative Agreement ($XXXM / 5Y)</b> between a leading Travel &amp; Hospitality ISV and AWS.</li>
+        <li>Enabled customer engineering teams to design <b>AI-First architectures</b> for airline retail operations.</li>
+        <li>Executed large-scale hackathons (<b>300+ participants</b>), driving a <b>40% increase</b> in Amazon Bedrock adoption.</li>
+        <li>Frequent speaker (<b>10+ sessions</b>) at AWS Summits, AI Conclaves, ISV Embark events, and university events, presenting on cloud and AI technologies.</li>
+        <li>Delivered workshops on microservices, cloud security, and Generative AI — including agentic AI design patterns, architecture best practices, and AI-first design thinking.</li>
+        <li>Published technical blogs on cloud and AI architecture topics.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="accomplishments">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§3</span>
+      <h2>Notable Accomplishments</h2>
+    </div>
+    <div class="accom-grid">
+      <div class="accom"><span class="tag">HEALTHCARE / TRAVEL</span>Drove technical engagements across Healthcare &amp; Life Sciences ($XXM ARR) and Travel &amp; Hospitality ISVs ($XXM ARR).</div>
+      <div class="accom"><span class="tag">WELL-ARCHITECTED</span>Qualified 10–12 product/platform architectures through the AWS Well-Architected Framework; retained a $XXM ARR Aurora PostgreSQL workload through architecture optimization.</div>
+      <div class="accom"><span class="tag">HEALTHLAKE</span>Drove Amazon HealthLake adoption for ABDM and FHIR integration across healthcare customers.</div>
+      <div class="accom"><span class="tag">GENERATIVE AI</span>Drove Amazon Bedrock adoption for a Generative AI application supporting pharmacovigilance in Life Sciences.</div>
+      <div class="accom"><span class="tag">AVIATION</span>Led the complete re-architecture of a Baggage Tracer system, including CUTE certification as Program Architect — now operational across major airlines.</div>
+      <div class="accom"><span class="tag">MEDIA / OTT</span>Built an end-to-end cloud transcoding solution on AWS for Cloud OTT workflows (early adopter implementation, 2010).</div>
+      <div class="accom"><span class="tag">CAPITAL MARKETS</span>Built Eka (now QuorEka), a world-class Commodity Trading Risk Management suite, from concept to production.</div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="expertise">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§4</span>
+      <h2>Core Expertise</h2>
+    </div>
+    <ul class="expertise-list">
+      <li><span class="idx">A</span>Solutions Architecture &amp; Well-Architected Framework (WAF)</li>
+      <li><span class="idx">B</span>Cloud Adoption Strategy</li>
+      <li><span class="idx">C</span>Application Engineering &amp; Design</li>
+      <li><span class="idx">D</span>AI-First Architecture &amp; Agentic AI Patterns</li>
+      <li><span class="idx">E</span>Generative AI Solutions (Amazon Bedrock, Healthcare AI)</li>
+      <li><span class="idx">F</span>Technical Pre-Sales &amp; Strategic Partnership Scoping</li>
+      <li><span class="idx">G</span>Public Speaking &amp; Technical Enablement</li>
+    </ul>
+  </div>
+</section>
+
+<section class="alt" id="certifications">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§5</span>
+      <h2>Certifications</h2>
+    </div>
+    <table class="cert-ledger">
+      <tr><td class="code">AWS-P</td><td>AWS Certified Solutions Architect — Professional</td></tr>
+      <tr><td class="code">AWS-A</td><td>AWS Certified Solutions Architect — Associate</td></tr>
+      <tr><td class="code">AWS-C</td><td>AWS Certified Cloud Practitioner</td></tr>
+      <tr><td class="code">AWS-AI</td><td>AWS Certified Generative AI Practitioner</td></tr>
+      <tr><td class="code">GCP-A</td><td>Google Cloud Certified Professional Architect</td></tr>
+      <tr><td class="code">SEC-AI</td><td>Securiti.ai Certified — AI Security and Governance</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§6</span>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-item">
+      <div class="deg">M.S., Software Systems</div>
+      <div class="inst">BITS Pilani, Rajasthan, India</div>
+    </div>
+    <div class="edu-item">
+      <div class="deg">B.E., Computer Science and Engineering</div>
+      <div class="inst">UVCE, Bangalore University, Karnataka, India</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span class="mono">RAGHAVENDRA PRAKASH — SOLUTIONS ARCHITECTURE</span>
+    <span class="mono">PROFILE · REV 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
