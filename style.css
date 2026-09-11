@@ -1,0 +1,263 @@
+/* ---------------------------------------------------------
+   Editorial stylesheet — quiet, text-first, hairline rules.
+   Palette: paper white, ink black, a single restrained blue.
+--------------------------------------------------------- */
+
+:root {
+  --paper: #ffffff;
+  --ink: #1c1c1c;
+  --ink-soft: #55534d;
+  --rule: #d8d5cc;
+  --accent: #2a5d8f;
+  --accent-soft: #eef3f7;
+  --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+  --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --max: 700px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(42,93,143,0.35); }
+a:hover { border-bottom-color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Header / masthead ---------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 28px 24px 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+
+.site-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  border-bottom: none;
+}
+
+.site-name a { color: inherit; border-bottom: none; }
+
+.masthead-nav {
+  font-family: var(--sans);
+  font-size: 14px;
+  display: flex;
+  gap: 20px;
+}
+
+.masthead-nav a { color: var(--ink-soft); border-bottom: none; }
+.masthead-nav a:hover { color: var(--accent); }
+
+/* ---------- Page shell ---------- */
+
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-weight: normal;
+  font-size: 2.1em;
+  line-height: 1.2;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.subtitle {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 0 0 34px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--rule);
+}
+
+h2 {
+  font-family: var(--serif);
+  font-weight: normal;
+  font-size: 1.4em;
+  margin: 2.2em 0 0.7em;
+  color: var(--ink);
+}
+
+h2:first-of-type { margin-top: 1.6em; }
+
+p { margin: 0 0 1.1em; }
+
+ul, ol {
+  margin: 0 0 1.3em;
+  padding-left: 1.3em;
+}
+
+li { margin-bottom: 0.5em; }
+
+strong { font-weight: 700; }
+
+/* ---------- Article listing on home page ---------- */
+
+.article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.article-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.article-list li:first-child { border-top: 1px solid var(--rule); }
+
+.article-list a {
+  font-family: var(--serif);
+  font-size: 1.15em;
+  border-bottom: none;
+  color: var(--ink);
+}
+
+.article-list a:hover { color: var(--accent); }
+
+.article-list .dek {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+/* ---------- Definition-style list for strategies ---------- */
+
+.strategy {
+  margin: 0 0 2em;
+}
+
+.strategy h3 {
+  font-family: var(--serif);
+  font-size: 1.15em;
+  font-weight: bold;
+  margin: 0 0 0.5em;
+  color: var(--ink);
+}
+
+.strategy dl {
+  margin: 0;
+}
+
+.strategy dt {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 0.6em;
+}
+
+.strategy dd {
+  margin: 0.1em 0 0;
+}
+
+/* ---------- Tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0 2em;
+  font-size: 0.92em;
+}
+
+caption {
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 14px 10px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+thead th {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  text-transform: none;
+  color: var(--ink-soft);
+  font-weight: 700;
+  border-bottom: 1px solid var(--ink);
+}
+
+/* ---------- Callout / note ---------- */
+
+.note {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  font-size: 0.95em;
+  color: var(--ink-soft);
+  margin: 1.6em 0;
+}
+
+/* ---------- Footer nav between pages ---------- */
+
+.page-nav {
+  margin-top: 3em;
+  padding-top: 1.4em;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+.page-nav a { border-bottom: none; }
+
+/* ---------- Site footer ---------- */
+
+footer.site-footer {
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 24px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+  body { font-size: 16.5px; }
+  h1 { font-size: 1.7em; }
+  .masthead-inner { padding: 20px 18px 16px; }
+  main { padding: 28px 18px 60px; }
+  th, td { padding: 8px 8px 8px 0; }
+}
