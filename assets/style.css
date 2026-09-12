@@ -52,6 +52,24 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   overflow-y: auto;
 }
 
+/* ---------- Nav toggle (mobile off-canvas) ---------- */
+
+.nav-toggle {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sidebar-backdrop { display: none; }
+
 .site-name {
   font-family: var(--sans);
   font-weight: 700;
@@ -124,15 +142,77 @@ main {
 
 @media (max-width: 760px) {
   .layout { flex-direction: column; }
-  .sidebar {
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
     width: 100%;
-    position: static;
-    height: auto;
-    border-right: none;
+    background: var(--paper);
+    border: none;
     border-bottom: 1px solid var(--rule);
-    padding: 24px 20px;
+    padding: 16px 20px;
+    font-family: var(--sans);
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
   }
+
+  .nav-toggle .bars {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle .bars span {
+    display: block;
+    height: 1.5px;
+    background: var(--ink);
+  }
+
+  .sidebar {
+    width: 250px;
+    max-width: 82%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: var(--paper);
+    border-right: 1px solid var(--rule);
+    padding: 24px 20px;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+    z-index: 50;
+  }
+
+  .sidebar.is-open { transform: translateX(0); }
+
   .sidebar-section { margin-bottom: 18px; }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(28,28,28,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease;
+    z-index: 40;
+  }
+
+  .sidebar-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   main { padding: 32px 20px 60px; }
 }
 
@@ -212,6 +292,32 @@ strong { font-weight: 700; }
   color: var(--ink-soft);
   margin-top: 5px;
   line-height: 1.5;
+}
+
+.article-list time {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+/* ---------- Article header (topic pages) ---------- */
+
+.article-meta {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 34px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-nav.split {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* ---------- Definition-style list for strategies ---------- */

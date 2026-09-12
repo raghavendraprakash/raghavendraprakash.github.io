@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aligning Architecture to Unit Economics — Raghavendra Prakash</title>
+<meta name="description" content="How CAC, LTV, EBITDA, and churn should shape architecture decisions — a case study on TransactCloud's move to multi-tenant serverless.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="layout">
+
+<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">
+  <span class="bars"><span></span><span></span><span></span></span>
+  Menu
+</button>
+
+<aside class="sidebar" id="sidebar">
+  <span class="site-name"><a href="../index.html">Raghavendra Prakash</a></span>
+  <p class="site-tagline">Solutions Architecture &amp; Cloud/AI Transformation</p>
+
+  <nav class="sidebar-section">
+    <p class="sidebar-label">Topics</p>
+    <ul class="topic-list">
+      <li><a href="architecture-unit-economics.html" class="current">Aligning Architecture to Unit Economics</a></li>
+      <li><a href="tech2business-translating.html">Translating Technical Recommendations into Business Value</a></li>
+      <li><a href="strategic-alignment-dd.html">Strategic Thinking for Technical Leaders</a></li>
+      <li><a href="operationalization-strategy.html">Operationalizing Autonomous Data Systems</a></li>
+      <li><a href="gtm.html">Go-To-Market Strategies for Enterprise Transformation</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<main>
+  <h1>Aligning Architecture to Unit Economics</h1>
+  <p class="article-meta">September 2026 · Solutions Architecture</p>
+
+  <p>Every technical design decision carries a direct financial consequence. A design that isn't grounded in unit economics risks building systems that are operationally unsustainable, unprofitable, or misaligned with business strategy.</p>
+
+  <p>Unit revenue must scale faster than unit infrastructure cost. If a platform's cost to serve grows linearly with transaction volume, high adoption can actually reduce profitability. Tracking unit costs surfaces inefficient API calls, unoptimized database queries, and third-party dependencies eating into margin — and helps product teams decide which features are expensive to run and which consumption tier they belong in.</p>
+
+  <p>Executives evaluate technical solutions on ROI, payback period, and EBITDA impact, so it helps for architects to speak that vocabulary directly. "Refactoring this messaging architecture reduces cloud compute cost per transaction by 40%, expanding gross margin from 65% to 78%" lands far better with a business audience than "refactoring would result in cleaner, more maintainable code."</p>
+
+  <h2>Four numbers every architect should know</h2>
+
+  <div class="strategy">
+    <dl>
+      <dt>Cost to Serve (COGS)</dt>
+      <dd>The direct infrastructure and support cost of running a single tenant. Focus on resource utilization, auto-scaling policy, and third-party API costs.</dd>
+
+      <dt>Average Revenue Per User (ARPU)</dt>
+      <dd>Expected revenue yield per user. Focus on system isolation level, SLA guarantees, and multi-region replication options.</dd>
+
+      <dt>Customer Acquisition Cost (CAC)</dt>
+      <dd>The cost of landing a new customer. Focus on automating tenant provisioning and DevOps pipelines to bring onboarding cost down.</dd>
+
+      <dt>LTV:CAC Ratio</dt>
+      <dd>Lifetime value against acquisition cost — the total financial return per customer relative to what it cost to win them. Focus on resilient, low-latency architecture that prevents churn.</dd>
+    </dl>
+  </div>
+
+  <p>The rest of this piece works through how these numbers play out in a real case study — how a business generates revenue, and how its operational metrics shape architecture priorities.</p>
+
+  <h2>Case study: TransactCloud modernization at enterprise scale</h2>
+
+  <p>TransactCloud is a B2B SaaS platform providing core payment orchestration and fraud-prevention workflows for mid-market e-commerce merchants. The company is transitioning from a single-tenant VM model to a cloud-native, multi-tenant serverless architecture.</p>
+
+  <h2>How TransactCloud makes money</h2>
+
+  <p>TransactCloud runs a hybrid monetization model: a predictable recurring SaaS subscription plus a transaction-volume usage fee.</p>
+
+  <div class="note">
+    Total Revenue = Fixed SaaS Subscription + Variable Usage Fee<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;= Base Platform Fee + (Transaction Volume × Take Rate)
+  </div>
+
+  <ul>
+    <li><strong>Fixed subscription fee:</strong> $2,000/month per enterprise-tier merchant, for core dashboards, API access, and baseline analytics.</li>
+    <li><strong>Variable transaction fee:</strong> $0.05 per processed transaction, plus a 0.10% take rate on total Gross Merchandise Value (GMV).</li>
+    <li><strong>Average account profile:</strong> a typical mid-market merchant processes 100,000 transactions/month on $5,000,000 of GMV.</li>
+  </ul>
+
+  <p>That works out to $2,000 base + $5,000 (transaction fees) + $5,000 (take rate) = <strong>$12,000 MRR</strong>, or roughly <strong>$144,000 ARR</strong> per merchant.</p>
+
+  <p>Capital is typically allocated across the following buckets — understanding the split is what tells you where to look for cost optimization:</p>
+
+  <table>
+    <caption>How a typical SaaS budget splits across functions</caption>
+    <thead>
+      <tr><th>Sales &amp; Marketing</th><th>Cloud &amp; Infra</th><th>R&amp;D / Engineering</th><th>General &amp; Administrative</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>40%</td><td>25%</td><td>20%</td><td>15%</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The four metrics executive leadership tracks</h2>
+
+  <p>Leadership evaluates engineering and business decisions against four foundational drivers: CAC, LTV, EBITDA, and customer churn.</p>
+
+  <div class="strategy">
+    <h3>A. Customer Acquisition Cost (CAC)</h3>
+    <dl>
+      <dt>Definition</dt>
+      <dd>Total sales and marketing spend required to land one new merchant account.</dd>
+      <dt>Current baseline</dt>
+      <dd>$36,000 per acquired enterprise merchant.</dd>
+      <dt>Executive priority</dt>
+      <dd>Cut CAC payback period from 6 months to 3 months by accelerating onboarding pipelines.</dd>
+    </dl>
+  </div>
+
+  <div class="strategy">
+    <h3>B. Lifetime Value (LTV)</h3>
+    <dl>
+      <dt>Definition</dt>
+      <dd>Total gross profit a single customer generates over their lifecycle before churning.</dd>
+      <dt>Current baseline</dt>
+      <dd>Assuming a 48-month average merchant lifetime at 80% gross margin: LTV = (ARPU × Gross Margin%) × Customer Lifespan = $12,000 × 80% × 48 = <strong>$460,800</strong>.</dd>
+      <dt>Alternate formula</dt>
+      <dd>LTV can also be derived from monthly churn: LTV = (ARPU × Gross Margin%) ÷ Monthly Churn Rate.</dd>
+    </dl>
+  </div>
+
+  <p>Before going further, it's worth pausing on GMV, since it underpins both revenue and capacity planning. GMV measures ecosystem liquidity — a rising GMV means the platform is attracting more transaction volume, which in turn forces decisions about throughput, database scaling, and compute capacity. It demonstrates market opportunity, but it is not revenue.</p>
+
+  <div class="note">
+    GMV = Total transactions × Average Order Value (AOV)<br>
+    Revenue = GMV × Take Rate<br><br>
+    Example: 100,000 orders at a $50 average order value gives a GMV of $5,000,000. At a 10% take rate, revenue is $500,000.
+  </div>
+
+  <p>Gross margin follows directly from revenue and cost of goods sold — where COGS covers cloud infrastructure and hosting, third-party software, customer support, DevOps, engineering salaries, and licensing, with no indirect costs or opex mixed in:</p>
+
+  <div class="note">
+    Gross Margin % = ((Total Revenue − COGS) ÷ Total Revenue) × 100
+  </div>
+
+  <p>For a cloud software company with $10,000,000 in quarterly revenue and $2,000,000 in COGS ($1.2M cloud hosting, $300K third-party security/API services, $500K onboarding and support salaries), gross margin works out to 80%.</p>
+
+  <p>Putting LTV and CAC together — $460,800 against $36,000 — gives an LTV:CAC ratio of roughly <strong>12.8×</strong>, which is the kind of healthy unit economics that gets executive attention.</p>
+
+  <div class="strategy">
+    <h3>C. EBITDA &amp; gross margin expansion</h3>
+    <dl>
+      <dt>Definition</dt>
+      <dd>Earnings before interest, taxes, depreciation, and amortization — a read on true operational profitability.</dd>
+      <dt>Executive priority</dt>
+      <dd>Expand gross margin from 65% to 80% by modernizing infrastructure.</dd>
+      <dt>Engineering impact</dt>
+      <dd>Moving from single-tenant dedicated VMs to a multi-tenant auto-scaling cluster cuts cloud infrastructure cost per transaction from $0.025 to $0.008 — adding roughly $1.7M annually back to EBITDA.</dd>
+    </dl>
+  </div>
+
+  <div class="strategy">
+    <h3>D. Customer churn rate</h3>
+    <dl>
+      <dt>Definition</dt>
+      <dd>Percentage of customer ARR lost over a given period.</dd>
+      <dt>Current baseline</dt>
+      <dd>0.8% monthly account churn (roughly 9.6% annualized).</dd>
+      <dt>Executive priority</dt>
+      <dd>Reduce churn below 0.5% monthly. The main driver is transaction-processing latency spikes during peak sales events, such as Black Friday.</dd>
+    </dl>
+  </div>
+
+  <h2>Where architecture strategy meets business outcome</h2>
+
+  <p>Put together, here's how the technical response to each metric maps to a business result:</p>
+
+  <table>
+    <caption>Architecture alignment summary</caption>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Technical focus area</th>
+        <th>Architecture strategy</th>
+        <th>Business outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>EBITDA / Gross Margin</td>
+        <td>High cloud compute costs; idle instances; dedicated VMs</td>
+        <td>Re-architect to multi-tenancy; serverless options; containers; auto-scaling</td>
+        <td>Infrastructure cost per transaction drops to 68%, pushing gross margin from 65% to 80%</td>
+      </tr>
+      <tr>
+        <td>Customer Churn</td>
+        <td>Unplanned downtime during peak transaction windows</td>
+        <td>Multi-region deployments; cell-based architecture; fail-over strategies</td>
+        <td>Platform availability increases to 99.99%, reducing customer churn by 30%</td>
+      </tr>
+      <tr>
+        <td>CAC Payback</td>
+        <td>Manual security provisioning delays onboarding by 6 weeks</td>
+        <td>Tenant provisioning using Infrastructure as Code</td>
+        <td>Onboarding drops from 6 weeks to 10 minutes, accelerating time to first transaction revenue</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>As a solutions architect, this is the vocabulary that lets you align architecture priorities with unit economics — and make the business case for the technical work you already know is right.</p>
+
+  <div class="page-nav split">
+    <a href="../index.html">&larr; Back to all writing</a>
+    <a href="tech2business-translating.html">Next: Translating Technical Recommendations into Business Value &rarr;</a>
+  </div>
+</main>
+
+</div>
+
+<footer class="site-footer">
+  &copy; Raghavendra Prakash
+</footer>
+
+<script src="../assets/nav.js" defer></script>
+</body>
+</html>

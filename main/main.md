@@ -1,13 +1,13 @@
-**About Raghavendra Prakash:**
+**Raghavendra Prakash:**
 RP is a Seasoned Technology Professional with a proven track record in Product Engineering, Consulting, Solutions Architecture, and Cloud adoption for application, data, and AI engineering.
 
-At AWS, Executed technical scoping, Industry First Strategic Collaborative Agreement ($300M/5Y) between an ISV in Travel
+At AWS, Executed technical scoping, Industry First Strategic Collaborative Agreement (xxx/5Y)) between an ISV in Travel
 and Hospitality space and AWS; Enabled customer teams to design AI First architecture for Airline Retail operations; Executed large-scale hackathons (300+ participants), accelerate Bedrock adoption by 40%; Speaker (10+ events) at AWS Summits and universities; Conducted workshops on micro services, cloud security, and Generative AI including Agentic AI patterns, Design best practices, AI First architectures; Published technical blogs.
 
 Notable accomplishments 
 
-* Drove technical engagements across Healthcare and Life-sciences ($24M-30M ARR) and in Travel & Hospitality ISVs ($29M ARR)
-* Qualified 10-12 Product architectures for Well Architected Framework; Retained $12M ARR Aurora PostgreSQL workload.
+* Drove technical engagements across Healthcare and Life-sciences ($xxM-yyM ARR) and in Travel & Hospitality ISVs ($zzM ARR)
+* Qualified 10-12 Product architectures for Well Architected Framework; Retained $nnM ARR Aurora PostgreSQL workload.
 * Drove Amazon HealthLake Adoption for ABDM and FHIR integration across AWS customers in Healthcare segment.
 * Drove Amazon Bedrock adoption for Generative AI application for Pharmacovigilance in Life-sciences segment.
 * Complete Re-architecture of Baggage Tracer system  including CUTE certification as a Program Architect (Operational for all the major airlines)

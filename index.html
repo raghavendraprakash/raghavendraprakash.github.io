@@ -11,30 +11,30 @@
 
 <div class="layout">
 
-<aside class="sidebar">
+<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">
+  <span class="bars"><span></span><span></span><span></span></span>
+  Menu
+</button>
+
+<aside class="sidebar" id="sidebar">
   <span class="site-name"><a href="index.html">Raghavendra Prakash</a></span>
   <p class="site-tagline">Solutions Architecture &amp; Cloud/AI Transformation</p>
 
   <nav class="sidebar-section">
-    <p class="sidebar-label">Site</p>
-    <ul>
-      <li><a href="index.html" class="current">About</a></li>
-    </ul>
-  </nav>
-
-  <nav class="sidebar-section">
     <p class="sidebar-label">Topics</p>
     <ul class="topic-list">
-      <li><a href="topics/gtm.html">Go-To-Market Strategies for Enterprise Transformation</a></li>
-      <li><a href="topics/operationalization-strategy.html">Operationalizing Autonomous Data Systems</a></li>
-      <li><a href="topics/strategic-alignment-dd.html">Strategic Thinking for Technical Leaders</a></li>
+      <li><a href="topics/architecture-unit-economics.html">Aligning Architecture to Unit Economics</a></li>
       <li><a href="topics/tech2business-translating.html">Translating Technical Recommendations into Business Value</a></li>
+      <li><a href="topics/strategic-alignment-dd.html">Strategic Thinking for Technical Leaders</a></li>
+      <li><a href="topics/operationalization-strategy.html">Operationalizing Autonomous Data Systems</a></li>
+      <li><a href="topics/gtm.html">Go-To-Market Strategies for Enterprise Transformation</a></li>
     </ul>
   </nav>
 </aside>
 
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 <main>
-  <p class="eyebrow">About</p>
   <h1>Raghavendra Prakash</h1>
   <p class="subtitle">Solutions Architecture · Cloud Adoption · AI Engineering</p>
 
@@ -77,23 +77,40 @@
     <li>B.E., Computer Science and Engineering — UVCE, Bangalore University, Karnataka, India</li>
   </ul>
 
-  <h2>Articles</h2>
+  <h2>Recent writing</h2>
+  <!--
+    Keep only the 5 most recent entries here (newest first). The full
+    back-catalog stays reachable from the "Topics" list in the sidebar,
+    which is never trimmed. To publish a new piece: add its _<topic>.md
+    or _<topic>.pdf source to /topics, convert it into /topics/<slug>.html
+    using this same template, then add one <li> at the top of both lists
+    above and drop the oldest <li> below once there are more than 5.
+  -->
   <ul class="article-list">
     <li>
-      <a href="topics/gtm.html">Go-To-Market Strategies for Enterprise Transformation</a>
-      <div class="dek">Five patterns for operationalizing, packaging, and rolling out new capabilities across an enterprise — from land-and-expand to platform-as-a-product.</div>
-    </li>
-    <li>
-      <a href="topics/operationalization-strategy.html">Operationalizing Autonomous Data Systems</a>
-      <div class="dek">A phased playbook — guardrails, an autonomy maturity model, operating-model change, and a shadow-mode-to-production rollout path — for moving to a Data Platform Product model.</div>
-    </li>
-    <li>
-      <a href="topics/strategic-alignment-dd.html">Strategic Thinking for Technical Leaders</a>
-      <div class="dek">A framework for strategic thinking, illustrated through a case study of moving a healthcare SaaS platform to multi-tenant cloud architecture.</div>
+      <a href="topics/architecture-unit-economics.html">Aligning Architecture to Unit Economics</a>
+      <div class="dek">A case study on TransactCloud's move to multi-tenant serverless — how CAC, LTV, EBITDA, and churn should shape architecture decisions.</div>
+      <time datetime="2026-09">September 2026</time>
     </li>
     <li>
       <a href="topics/tech2business-translating.html">Translating Technical Recommendations into Business Value</a>
       <div class="dek">Four pillars for shifting from technical expert to strategic peer, so decision-makers trust your technical analysis.</div>
+      <time datetime="2026-08">August 2026</time>
+    </li>
+    <li>
+      <a href="topics/strategic-alignment-dd.html">Strategic Thinking for Technical Leaders</a>
+      <div class="dek">A framework for strategic thinking, illustrated through a case study of moving a healthcare SaaS platform to multi-tenant cloud architecture.</div>
+      <time datetime="2026-07">July 2026</time>
+    </li>
+    <li>
+      <a href="topics/operationalization-strategy.html">Operationalizing Autonomous Data Systems</a>
+      <div class="dek">A phased playbook — guardrails, an autonomy maturity model, operating-model change, and a shadow-mode-to-production rollout path — for moving to a Data Platform Product model.</div>
+      <time datetime="2026-06">June 2026</time>
+    </li>
+    <li>
+      <a href="topics/gtm.html">Go-To-Market Strategies for Enterprise Transformation</a>
+      <div class="dek">Five patterns for operationalizing, packaging, and rolling out new capabilities across an enterprise — from land-and-expand to platform-as-a-product.</div>
+      <time datetime="2026-05">May 2026</time>
     </li>
   </ul>
 </main>
@@ -104,5 +121,6 @@
   &copy; Raghavendra Prakash
 </footer>
 
+<script src="assets/nav.js" defer></script>
 </body>
 </html>
